@@ -41,6 +41,7 @@ export type RelayerEnv = {
   kytInspectToken: string | undefined;
   applicationId: string;
   zkConfigNonce: bigint;
+  databaseCa: string;
 };
 
 export function loadRelayerEnv(): RelayerEnv {
@@ -74,5 +75,6 @@ export function loadRelayerEnv(): RelayerEnv {
     ...(token ? { kytInspectToken: token } : { kytInspectToken: undefined }),
     applicationId: requireDecimalApplicationId(requiredEnv("APPLICATION_ID")),
     zkConfigNonce: BigInt(optionalEnv("ZK_CONFIG_NONCE", "3")),
+    databaseCa: optionalEnv("DATABASE_CA", ""),
   };
 }
